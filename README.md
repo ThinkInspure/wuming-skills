@@ -6,6 +6,7 @@ This project provides WuMing's（悟鸣） original Skills for personal learning
 | Skill Name | Description |
 |------------|-------------|
 | [prompt-optimizer](skills/prompt-optimizer/SKILL.md) | Prompt engineering expert that helps users craft optimized prompts using many proven frameworks. Use when users want to optimize prompts, improve AI instructions, create better prompts for specific tasks, or need help selecting the best prompt framework for their use case. |
+| [qoder-wiki](skills/qoder-wiki/SKILL.md) | Qoder 官方文档知识库，包含产品介绍、用户指南、功能配置、扩展能力、账户定价和故障排查。当用户询问 Qoder 相关问题（如安装、使用、功能、定价、快捷键、MCP、Skills、Quest Mode、Repo Wiki 等）时使用此 skill。 |
 | [sync-skills](skills/sync-skills/README.md) | Automatically sync skills from multiple sources (Local, GitHub, skillsmp.com) to all installed AI coding tool directories (Claude Code, Cursor, Windsurf, etc.). |
 
 ## Usage
@@ -21,8 +22,13 @@ This project provides WuMing's（悟鸣） original Skills for personal learning
 install `prompt-optimizer`
 ```
 /plugin install prompt-engineering-skills@chujianyun/skills
-
 ```
+
+install `qoder-wiki`
+```
+/plugin install qoder-wiki@chujianyun/skills
+```
+
 install `sync-skills`
 ```
 /plugin install sync-skills@chujianyun/skills
