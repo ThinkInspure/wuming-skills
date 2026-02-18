@@ -54,6 +54,7 @@ Checks these paths in order, only syncs if directory exists:
 | Windsurf | `.windsurf/skills` | `~/.codeium/windsurf/skills` |
 | Qwen Code | `.qwen/skills` | `~/.qwen/skills` |
 | Qoder | `.qoder/skills` | `~/.qoder/skills` |
+| OpenClaw | `.openclaw/skills` | `~/.openclaw/skills` |
 
 ## Quick Reference
 
