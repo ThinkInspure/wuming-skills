@@ -36,6 +36,15 @@
       "skills": [
         "./skills/qoder-wiki"
       ]
+    },
+    {
+      "name": "openclaw-wiki",
+      "description": "OpenClaw 官方文档知识库，多渠道 AI Agent 网关。包含安装配置、Gateway、WhatsApp/Telegram/Discord 等渠道连接、Sessions、Tools、Skills、故障排查等",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/openclaw-wiki"
+      ]
     }
   ]
 }
