@@ -15,36 +15,35 @@
       "description": "Collection of prompt engineering tools featuring 57 proven frameworks for crafting optimized AI prompts across various domains including marketing, decision analysis, education, product development, creative writing, and complex reasoning",
       "source": "./",
       "strict": false,
-      "skills": [
-        "./skills/prompt-optimizer"
-      ]
+      "skills": ["./skills/prompt-optimizer"]
     },
     {
       "name": "sync-skills",
       "description": "Automatically sync skills from multiple sources (Local, GitHub, skillsmp.com) to all installed AI coding tool directories. Supports Claude Code, GitHub Copilot, Cursor, Windsurf, and more.",
       "source": "./",
       "strict": false,
-      "skills": [
-        "./skills/sync-skills"
-      ]
+      "skills": ["./skills/sync-skills"]
     },
     {
       "name": "qoder-wiki",
       "description": "Qoder 官方文档知识库，包含产品介绍、用户指南、功能配置、扩展能力、账户定价和故障排查",
       "source": "./",
       "strict": false,
-      "skills": [
-        "./skills/qoder-wiki"
-      ]
+      "skills": ["./skills/qoder-wiki"]
     },
     {
       "name": "openclaw-wiki",
       "description": "OpenClaw 官方文档知识库，多渠道 AI Agent 网关。包含安装配置、Gateway、WhatsApp/Telegram/Discord 等渠道连接、Sessions、Tools、Skills、故障排查等",
       "source": "./",
       "strict": false,
-      "skills": [
-        "./skills/openclaw-wiki"
-      ]
+      "skills": ["./skills/openclaw-wiki"]
+    },
+    {
+      "name": "claudian-installer",
+      "description": "Install Claudian Obsidian plugin which embeds Claude Code as an AI collaborator in your vault. Your vault becomes Claude's working directory, giving it full agentic capabilities: file read/write, search, bash commands, and multi-step workflows.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/claudian-installer"]
     }
   ]
 }
