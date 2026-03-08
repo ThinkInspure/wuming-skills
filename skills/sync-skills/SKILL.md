@@ -8,6 +8,8 @@ description: Use when syncing skills from local folders, GitHub URLs, or skillsm
 ## Overview
 Automatically sync skills from multiple sources to all installed AI coding tool directories. Lists all existing target directories for user confirmation before syncing.
 
+> **🚨 CRITICAL REQUIREMENT:** All sync operations **MUST** include `~/.agents/skills` as the primary target. This universal skill directory is used by multiple AI coding tools and is **non-negotiable**. If the directory doesn't exist, it will be created automatically.
+
 ## When to Use
 
 ```dot
@@ -42,19 +44,22 @@ Use when:
 
 Checks these paths in order, only syncs if directory exists:
 
-| Tool | Project Level | User Level |
-|------|---------------|------------|
-| Claude Code | `.claude/skills` | `~/.claude/skills` |
-| GitHub Copilot | `.github/skills` | `~/.copilot/skills` |
-| Google Antigravity | `.agent/skills` | `~/.gemini/antigravity/skills` |
-| Cursor | `.cursor/skills` | `~/.cursor/skills` |
-| OpenCode | `.opencode/skill` | `~/.config/opencode/skill` |
-| OpenAI Codex | `.codex/skills` | `~/.codex/skills` |
-| Gemini CLI | `.gemini/skills` | `~/.gemini/skills` |
-| Windsurf | `.windsurf/skills` | `~/.codeium/windsurf/skills` |
-| Qwen Code | `.qwen/skills` | `~/.qwen/skills` |
-| Qoder | `.qoder/skills` | `~/.qoder/skills` |
-| OpenClaw | `.openclaw/skills` | `~/.openclaw/skills` |
+| Tool               | Project Level      | User Level                     |
+| ------------------ | ------------------ | ------------------------------ |
+| **Agents (Universal)** ⭐ | `.agents/skills`   | `~/.agents/skills` **[REQUIRED]** |
+| Claude Code        | `.claude/skills`   | `~/.claude/skills`             |
+| GitHub Copilot     | `.github/skills`   | `~/.copilot/skills`            |
+| Google Antigravity | `.agents/skills`   | `~/.gemini/antigravity/skills` |
+| Cursor             | `.cursor/skills`   | `~/.cursor/skills`             |
+| OpenCode           | `.opencode/skill`  | `~/.config/opencode/skill`     |
+| OpenAI Codex       | `.codex/skills`    | `~/.codex/skills`              |
+| Gemini CLI         | `.gemini/skills`   | `~/.gemini/skills`             |
+| Windsurf           | `.windsurf/skills` | `~/.codeium/windsurf/skills`   |
+| Qwen Code          | `.qwen/skills`     | `~/.qwen/skills`               |
+| Qoder              | `.qoder/skills`    | `~/.qoder/skills`              |
+| OpenClaw           | `.openclaw/skills` | `~/.openclaw/skills`           |
+
+> **⚠️ CRITICAL:** `~/.agents/skills` is a **MANDATORY** sync target. This universal skill directory is used by multiple AI coding tools and **MUST ALWAYS** be included in sync operations. Never skip this directory.
 
 ## Quick Reference
 
@@ -97,6 +102,8 @@ https://www.skillsmp.com/skills/skill-name
 
 **Local folder:**
 ```bash
+# MANDATORY: Always sync to ~/.agents/skills first
+cp -r /path/to/skill-name ~/.agents/skills/
 cp -r /path/to/skill-name ~/.claude/skills/
 cp -r /path/to/skill-name ~/.qoder/skills/
 # ... for each existing target
@@ -108,6 +115,8 @@ cp -r /path/to/skill-name ~/.qoder/skills/
 git clone https://github.com/user/skill-repo.git /tmp/skill-sync
 
 # Copy skill folder (might be in subdirectory)
+# MANDATORY: Always sync to ~/.agents/skills first
+cp -r /tmp/skill-sync/skill-name ~/.agents/skills/
 cp -r /tmp/skill-sync/skill-name ~/.claude/skills/
 # ... for each existing target
 
@@ -187,7 +196,9 @@ check_and_sync() {
   local skill_name=$2
 
   # Array of all target directories
+  # IMPORTANT: ~/.agents/skills is MANDATORY and must be first
   local targets=(
+    "$HOME/.agents/skills"     # MANDATORY - Universal skill directory
     "$HOME/.claude/skills"
     "$HOME/.qoder/skills"
     "$HOME/.copilot/skills"
@@ -197,7 +208,16 @@ check_and_sync() {
   local existing_targets=()
 
   # First pass: collect existing directories
-  for target in "${targets[@]}"; do
+  # MANDATORY: ~/.agents/skills must exist for sync to proceed
+  local agents_dir="$HOME/.agents/skills"
+  if [ ! -d "$agents_dir" ]; then
+    echo "⚠️  Creating mandatory directory: $agents_dir"
+    mkdir -p "$agents_dir"
+  fi
+  existing_targets+=("$agents_dir")
+
+  # Collect other existing directories
+  for target in "${targets[@]:1}"; do
     if [ -d "$target" ]; then
       existing_targets+=("$target")
     fi
@@ -285,13 +305,16 @@ done
 
 | Mistake | Fix |
 |---------|-----|
+| **⚠️ Skipping ~/.agents/sync** | **CRITICAL: NEVER skip this directory. It's MANDATORY for all sync operations** |
 | Syncing without user confirmation | Always list targets and wait for `y/N` confirmation |
-| Syncing to non-existent directories | Always check `-d` before copying |
+| Syncing to non-existent directories | Always check `-d` before copying (except ~/.agents/skills - create if missing) |
 | Leaving temp files | Always cleanup `/tmp/skill-sync-*` after use |
 | GitHub subdirectory confusion | Check for SKILL.md in root and subdirectories |
 | Not handling .git suffix | Strip `.git` from URLs before cloning |
 | skillsmp.com parsing failures | Inspect page structure first, adapt parsing |
 | Forgetting to show skill name | Always display skill name in confirmation prompt |
+
+> **🚨 CRITICAL:** The most serious mistake is **skipping ~/.agents/skills**. This directory is used by multiple AI coding tools and must always be included in every sync operation.
 
 ## Conflict Handling
 
