@@ -13,6 +13,7 @@ This project provides WuMing's original AI assistant skills for personal learnin
 | [openclaw-ops](skills/openclaw-ops/SKILL.md)             | OpenClaw operations assistant providing CLI command reference and troubleshooting workflows. Use when users need to run OpenClaw commands, diagnose service issues, fix Gateway or channel connection failures, view logs, or manage channels and agents.                                      |
 | [claudian-installer](skills/claudian-installer/SKILL.md) | Install Claudian Obsidian plugin which embeds Claude Code as an AI collaborator in your vault. Use when the user wants to install Claudian plugin to their Obsidian vault.                                                                                                                     |
 | [copaw-ops](skills/copaw-ops/SKILL.md)                   | CoPaw 运维助手，提供服务启停、配置管理、模型与渠道管理、定时任务巡检、日志排查和故障恢复流程。当用户提到 copaw 运维、服务无响应、渠道断连、MCP 失败、模型调用失败、cron 不执行、Docker 部署或重置恢复时使用此技能。                                                                                                                                                                       |
+| [skill-optimizer](skills/skill-optimizer/SKILL.md)       | 优化和重构现有 skill。用于检查目标 skill 的触发描述、SKILL.md 工作流、确认门槛、渐进式披露，以及 references/scripts/assets 的组织方式。当用户提到“优化 skill”“检查 skill 质量”“改进某个 skill”“重构技能说明”时使用。                                                                                                  |
 
 ## Usage
 
@@ -57,6 +58,11 @@ Install `openclaw-ops`
 Install `copaw-ops`
 ```
 /plugin install copaw-ops@chujianyun/skills
+```
+
+Install `skill-optimizer`
+```
+/plugin install skill-optimizer@chujianyun/skills
 ```
 ### Method 2: Using [openskills](https://github.com/numman-ali/openskills)
 
