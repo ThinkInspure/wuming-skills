@@ -1,0 +1,53 @@
+{
+  "name": "github-code-interpreter",
+  "version": "1.0.0",
+  "description": "GitHub 源码解读助手 - 深入理解开源项目的核心原理和设计思想",
+  "author": "悟鸣",
+  "keywords": [
+    "github",
+    "code",
+    "source",
+    "analysis",
+    "interpretation",
+    "开源",
+    "源码",
+    "解读",
+    "学习"
+  ],
+  "trigger": {
+    "keywords": [
+      "解读源码",
+      "源码解读",
+      "分析源码",
+      "理解原理",
+      "生成学习报告",
+      "github解读",
+      "仓库分析"
+    ],
+    "patterns": [
+      "github\\.com/[^/]+/[^/]+",
+      "解读.*github",
+      "分析.*仓库"
+    ]
+  },
+  "scripts": {
+    "bootstrap": "python3 scripts/bootstrap_github_analysis.py",
+    "review": "bash scripts/review.sh"
+  },
+  "references": {
+    "report-outline": "references/report-outline.md",
+    "readme": "README.md",
+    "examples": "EXAMPLES.md"
+  },
+  "directories": {
+    "github": "~/Documents/coding/github",
+    "working": "~/Documents/working",
+    "output": "working/github-analysis"
+  },
+  "features": {
+    "auto_review": true,
+    "review_interval": "1 hour",
+    "generate_mermaid": true,
+    "personalized_insights": true
+  }
+}

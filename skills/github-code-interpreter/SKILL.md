@@ -45,7 +45,7 @@ cd ~/Documents/coding/github
 ls -la | grep -i '<repo_name>'
 ```
 
-如果仓库已存在，直接使用；如果不存在，提示用户是否需要克隆：
+如果仓库已存在，直接使用；如果不存在，克隆到该目录：
 
 ```bash
 git clone https://github.com/<user>/<repo>.git
@@ -98,26 +98,38 @@ tree -L 2 -I 'node_modules|target|__pycache__' > ~/Documents/working/github-anal
   - 仓库地址、Star 数、最后更新时间
   - 项目描述、主要功能
   - 技术栈（语言、框架、依赖）
+
 - **使用场景**
   - 这个项目解决什么问题
   - 适合在什么场景下使用
   - 典型应用案例
+
 - **优点与缺点**
   - 优点：性能、设计、易用性等亮点
   - 缺点：局限性、不足、可改进点
+
 - **核心原理**
   - 整体架构设计
   - 关键模块与数据流
   - 算法或核心逻辑
   - 技术选型理由
+
 - **设计思想**
   - 代码组织方式
   - 设计模式应用
   - 抽象层次划分
   - 扩展性考虑
+
+- **对悟鸣的启发**
+  - 结合悟鸣当前岗位（AI 应用、Agent 开发、工具链建设）
+  - 结合最近研究方向（Agent Skills、MCP、AI as Me）
+  - 可以借鉴的设计思路或实现方法
+  - 可以应用到自己项目的具体点
+
 - **术语解释**
   - 项目中的专业术语或缩写
   - 特定技术的简要说明
+
 - **Mermaid 图**
   - 项目架构图：`flowchart TD` 或 `graph TD`
   - 模块关系图：`flowchart LR`
@@ -153,7 +165,42 @@ tree -L 2 -I 'node_modules|target|__pycache__' > ~/Documents/working/github-anal
   - 关键模块的入口
   - 实验建议
 
-### 6. 安排延迟复查
+### 6. 结合悟鸣背景补充启发
+
+当需要输出"对悟鸣的启发"时，按需读取以下资料：
+
+- `~/Documents/coding/our/skills-wuming/skills/personal-secretary/references/人物/我/04_工作相关.md`
+- `~/Documents/coding/our/skills-wuming/skills/personal-secretary/references/人物/我/07_AI相关/07_AI探索.md`
+- `~/Documents/coding/our/skills-wuming/skills/personal-secretary/references/人物/我/05_创作分享/05_我的创作经验.md`
+
+补充时重点围绕这些维度：
+
+- 当前岗位是否与 AI 应用、Agent 开发、工具链、开发者体验相关
+- 最近研究是否与 Agent Skills、MCP、AI 协作、知识管理相关
+- 可以如何借鉴这个项目的设计思路到自己的 Skills 开发中
+- 是否适合写公众号文章介绍这个项目
+
+### 7. 初稿完成要求（必须执行）⚠️
+
+**生成初版报告后，必须立即向用户发送两份文档**：
+
+- 发送源码解读报告：`<repo_name>_源码解读.md`
+- 发送快速上手文档：`<repo_name>_快速上手.md`
+- 使用渠道提供的文件发送功能（QQ 使用 `<qqfile>标签`）
+- 提醒用户这是初稿，后续会有复查任务完善内容
+- 说明复查时间（1 小时后）
+
+发送示例（QQ）：
+```
+✅ GitHub 源码解读初稿已生成！
+
+📄 源码解读报告：<qqfile>源码解读文件路径</qqfile>
+📄 快速上手文档：<qqfile>快速上手文件路径</qqfile>
+⏰ 初稿复查时间：1 小时后（自动完善）
+📝 当前版本：v1.0 初稿
+```
+
+### 8. 安排延迟复查
 
 初版报告完成后，主动安排 1 小时后的复查任务：
 
@@ -161,7 +208,7 @@ tree -L 2 -I 'node_modules|target|__pycache__' > ~/Documents/working/github-anal
 - 如果不支持，明确告诉用户这一限制
 - 在报告中记录复查安排
 
-### 7. 复查任务的更新原则
+### 9. 复查任务的更新原则
 
 复查时遵循增量更新：
 
@@ -171,16 +218,28 @@ tree -L 2 -I 'node_modules|target|__pycache__' > ~/Documents/working/github-anal
 - 检查快速上手文档的准确性（实际运行验证）
 - 在文档末尾添加 `复查记录` 时修改了啥
 
-### 8. 输出要求
+### 10. 输出要求
 
-完成后，向用户明确汇报：
+#### 初版报告完成后的必须操作⚠️
 
+**第一步：发送两份文档文件**
+- 使用渠道提供的文件发送功能（QQ 使用 `<qqfile>标签`）
+- 发送 `<repo_name>_源码解读.md`
+- 发送 `<repo_name>_快速上手.md`
+- 附带简短说明：
+  - 初稿已完成
+  - 复查时间（1 小时后）
+  - 当前版本信息
+
+**第二步：汇报基本信息**
 - GitHub 仓库本地路径
 - 解读文档目录路径
 - 两份文档的文件名
 - 源码解读报告的主要内容概要
 - 快速上手文档的关键步骤
 - 复查任务是否成功安排
+
+**注意**：必须先发送文件，再汇报信息。不要反过来。
 
 如果仓库过于庞大（如 React、Vue 等超大型项目），要明确说明分析范围，可能需要聚焦某个模块或子系统。
 
