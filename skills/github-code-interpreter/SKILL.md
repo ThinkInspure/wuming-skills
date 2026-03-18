@@ -106,7 +106,6 @@ python3 scripts/bootstrap_github_analysis.py <github_url> ~/Documents/working
 - 设计思想与值得借鉴的点
 - 必要术语解释
 - Mermaid 图（按需添加）
-- 对悟鸣的启发（仅在确实有价值时补充）
 
 #### 快速上手文档
 至少包括：
@@ -117,16 +116,7 @@ python3 scripts/bootstrap_github_analysis.py <github_url> ~/Documents/working
 - 常见问题
 - 下一步建议先读哪些源码
 
-### 6. 结合悟鸣背景补充启发
-
-只有在“对悟鸣的启发”这一节确实值得写时，再按需读取：
-- `~/Documents/coding/our/skills-wuming/skills/personal-secretary/references/人物/我/04_工作相关.md`
-- `~/Documents/coding/our/skills-wuming/skills/personal-secretary/references/人物/我/07_AI相关/07_AI探索.md`
-- `~/Documents/coding/our/skills-wuming/skills/personal-secretary/references/人物/我/05_创作分享/05_我的创作经验.md`
-
-不要为了凑内容硬写。
-
-### 7. 交付要求
+### 6. 交付要求
 
 完成初稿后，先把两份文档路径明确告诉用户，再补充：
 - 仓库本地路径
@@ -136,7 +126,7 @@ python3 scripts/bootstrap_github_analysis.py <github_url> ~/Documents/working
 
 如果当前渠道支持发文件，就直接发送文件；如果不支持，就至少给出可点击路径。
 
-### 8. 复查原则
+### 7. 复查原则
 
 默认不自动复查。
 
