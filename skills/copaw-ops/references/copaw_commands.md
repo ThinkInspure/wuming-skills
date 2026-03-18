@@ -24,7 +24,44 @@ Magic Commands（聊天中）：
 /daemon logs 50
 ```
 
-## 2. 初始化与配置
+## 2. 多 Agent 管理（新增）
+
+```bash
+# 列出所有 agent
+copaw agent list
+
+# 列出所有工作区
+copaw workspace list
+
+# 创建新工作区
+copaw workspace create <agent-id>
+
+# 删除工作区（高影响操作）
+copaw workspace delete <agent-id>
+
+# 检查工作区状态
+copaw workspace validate <agent-id>
+```
+
+**多 agent 参数说明**：
+- `--agent-id <id>`：指定操作的 agent（默认：default）
+- 适用于：models、channels、cron、chats、skills 等命令
+
+**工作区结构**：
+```
+~/.copaw/workspaces/<agent-id>/
+├── agent.json          # Agent 配置
+├── active_skills/      # 内置 skills
+├── file_store/         # 向量数据库（可选）
+├── chats.json          # 聊天记录
+├── jobs.json           # 定时任务
+├── AGENTS.md           # Agent 说明
+├── MEMORY.md           # 记忆
+├── HEARTBEAT.md        # 心跳检查
+└── memory/             # 记忆目录
+```
+
+## 3. 初始化与配置
 
 ```bash
 copaw init
@@ -34,15 +71,9 @@ copaw init --force
 
 默认工作目录：`~/.copaw/`
 
-- `config.json`
-- `HEARTBEAT.md`
-- `jobs.json`
-- `chats.json`
-- `copaw.log`
-- `SOUL.md`
-- `AGENTS.md`
-- `MEMORY.md`
-- `memory/`
+- `config.json` - 根配置（多 agent 架构）
+- `workspaces/` - 工作区目录
+- `copaw.log` - 日志文件
 
 环境变量覆盖：
 
@@ -52,37 +83,62 @@ export COPAW_LOG_LEVEL=debug
 export COPAW_MEMORY_COMPACT_THRESHOLD=100000
 ```
 
-## 3. 模型管理
+## 4. 模型管理
 
 ```bash
+# 默认 agent
 copaw models list
 copaw models config
 copaw models config-key dashscope
 copaw models set-llm
 
+# 指定 agent
+copaw models list --agent-id <id>
+copaw models config --agent-id <id>
+copaw models set-llm --agent-id <id>
+
+# 本地模型
 copaw models download Qwen/Qwen3-4B-GGUF
 copaw models local
 copaw models remove-local <model_id> --yes
 
+# Ollama 模型
 copaw models ollama-pull qwen3:8b
 copaw models ollama-list
 copaw models ollama-remove qwen3:8b
 ```
 
-## 4. 渠道管理
+## 5. 渠道管理
 
 ```bash
+# 默认 agent
 copaw channels list
 copaw channels config
 copaw channels add dingtalk
 copaw channels remove my_channel
+
+# 指定 agent
+copaw channels list --agent-id <id>
+copaw channels config dingtalk --agent-id <id>
+copaw channels add dingtalk --agent-id <id>
 ```
 
-支持渠道：`iMessage, Discord, DingTalk, Feishu, QQ, Console`
+支持渠道：`iMessage, Discord, DingTalk, Feishu, QQ, Console, Telegram, Matrix, Mattermost, MQTT`
 
-## 5. 定时任务管理
+**钉钉渠道配置**：
+```bash
+copaw channels config dingtalk --agent-id <id>
+```
+
+必填字段：
+- `client_id`
+- `client_secret`
+- `robot_code`（可选）
+
+## 6. 定时任务管理
 
 ```bash
+# 默认 agent
 copaw cron list
 copaw cron get <job_id>
 copaw cron state <job_id>
@@ -91,12 +147,20 @@ copaw cron delete <job_id>
 copaw cron pause <job_id>
 copaw cron resume <job_id>
 copaw cron run <job_id>
+
+# 指定 agent
+copaw cron list --agent-id <id>
+copaw cron state <job_id> --agent-id <id>
+copaw cron create --agent-id <id> ...
+copaw cron resume <job_id> --agent-id <id>
+copaw cron run <job_id> --agent-id <id>
 ```
 
 创建示例：
 
 ```bash
 copaw cron create \
+  --agent-id default \
   --type agent \
   --name "每日检查" \
   --cron "0 9 * * *" \
@@ -106,9 +170,10 @@ copaw cron create \
   --text "今日待办有哪些？"
 ```
 
-## 6. 会话与技能
+## 7. 会话与技能
 
 ```bash
+# 默认 agent
 copaw chats list
 copaw chats list --channel dingtalk
 copaw chats get <chat_id>
@@ -116,7 +181,22 @@ copaw chats delete <chat_id>
 
 copaw skills list
 copaw skills config
+
+# 指定 agent
+copaw chats list --agent-id <id>
+copaw skills list --agent-id <id>
 ```
+
+**内置 Skills**：
+- `cron` - 定时任务管理
+- `dingtalk_channel` - 钉钉自动连接
+- `docx/pptx/xlsx` - Office 文档操作
+- `pdf` - PDF 操作
+- `himalaya` - 邮件客户端
+- `browser_visible` - 浏览器可视化
+- `news` - 新闻
+- `file_reader` - 文件读取
+- `guidance` - 指导
 
 聊天命令：
 
@@ -128,7 +208,7 @@ copaw skills config
 /compact_str
 ```
 
-## 7. 环境变量与清理
+## 8. 环境变量与清理
 
 ```bash
 copaw env list
@@ -140,7 +220,7 @@ copaw clean --yes
 copaw clean --dry-run
 ```
 
-## 8. Docker / Supervisord
+## 9. Docker / Supervisord
 
 ```bash
 docker run -d -p 8088:8088 -v ~/.copaw:/app/working -e COPAW_PORT=8088 copaw:latest
@@ -158,16 +238,27 @@ supervisorctl tail -f app
 - `/var/log/app.err.log`
 - `/app/working/copaw.log`
 
-## 9. 监控巡检清单
+## 10. 监控巡检清单
 
 ```bash
+# 全局状态
 copaw daemon status
 copaw daemon version
 copaw daemon logs -n 50
-copaw models list
-copaw channels list
-copaw cron list
-copaw chats list
+
+# 多 agent 检查
+copaw agent list
+copaw workspace list
+
+# 特定 agent 检查
+copaw models list --agent-id <id>
+copaw channels list --agent-id <id>
+copaw cron list --agent-id <id>
+copaw chats list --agent-id <id>
+
+# 工作区检查
+ls -la ~/.copaw/workspaces/<id>/
+cat ~/.copaw/workspaces/<id>/agent.json
 ```
 
 聊天中补充检查：
@@ -176,3 +267,14 @@ copaw chats list
 /history
 ```
 
+## 11. 常用参数说明
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `--agent-id <id>` | 指定操作的 agent | default |
+| `--channel <name>` | 指定渠道 | - |
+| `--target-user <id>` | 目标用户标识 | - |
+| `--target-session <id>` | 目标会话标识 | - |
+| `-n, --lines <num>` | 日志行数 | 100 |
+| `--yes` | 跳过确认 | false |
+| `--dry-run` | 试运行 | false |
