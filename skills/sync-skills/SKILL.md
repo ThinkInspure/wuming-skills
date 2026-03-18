@@ -1,9 +1,26 @@
 ---
 name: sync-skills
-description: Skills 同步助手。适用于用户想把本地 skill 目录、GitHub 仓库或 skillsmp.com 页面同步到多个 AI 编码工具目录时使用。会先识别来源类型，再列出目标目录并执行同步，且必须包含 ~/.agents/skills。
+description: Skills 同步助手。适用于用户想把本地 skill 目录、GitHub 仓库或 skillsmp.com 页面同步到多个 AI 编码工具目录时使用。会先识别来源类型，再列出目标目录并等待确认后执行同步；同步目标必须包含 ~/.agents/skills。
 ---
 
 # Sync Skills
+
+将一个 skill 从本地目录、GitHub 仓库或 skillsmp.com 页面同步到多个 AI 编码工具目录。
+
+## 设计模式
+
+本 skill 主要采用：
+- **Pipeline**：按“识别来源 → 检查目标 → 列出计划 → 等待确认 → 执行同步”的顺序执行
+- **Tool Wrapper**：封装不同来源类型和不同工具目录的同步规则
+- **Inversion（轻度）**：同步前先确认目标范围和覆盖策略
+
+## Gotchas
+
+- `~/.agents/skills` 是强制目标，不能漏掉
+- 不要在未确认前直接覆盖已有 skill
+- 不要假设所有目标目录都存在，要先检查
+- 不要把“同步到所有目录”和“只同步到指定目录”混成一个默认动作
+- GitHub 仓库和 skillsmp.com 页面不一定直接对应 skill 根目录，要先判断结构
 
 ## Overview
 Automatically sync skills from multiple sources to all installed AI coding tool directories. Lists all existing target directories for user confirmation before syncing.

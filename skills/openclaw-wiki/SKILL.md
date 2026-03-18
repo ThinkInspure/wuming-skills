@@ -1,11 +1,25 @@
 ---
 name: openclaw-wiki
-description: OpenClaw 官方文档知识库，一个多渠道 AI Agent 网关。当用户询问 OpenClaw 相关问题（如安装、配置、Gateway、WhatsApp/Telegram/Discord 等渠道连接、Sessions、Tools、Skills、Pi Agent、故障排查等）时使用此 skill。
+description: OpenClaw 官方文档知识库。适用于用户询问 OpenClaw 相关问题，如安装、配置、Gateway、WhatsApp/Telegram/Discord 等渠道连接、Sessions、Tools、Skills、Pi Agent、CLI、故障排查等场景。默认先查本地文档，文档不足时再考虑联网补充。
 ---
 
 # OpenClaw Wiki
 
 OpenClaw 官方文档知识库，提供多渠道 AI Agent 网关的使用指南和技术参考。
+
+## 设计模式
+
+本 skill 主要采用：
+- **Tool Wrapper**：把 OpenClaw 官方文档包装成可按需调用的知识上下文
+- **Reviewer（轻度）**：先判断问题属于安装、配置、渠道、模型、工具还是排障
+
+## Gotchas
+
+- 不要跳过本地文档直接联网搜，先查仓库内 docs
+- 不要把用户的问题泛化成“大而全的 OpenClaw 介绍”，先回答具体问题
+- 不要编造不存在的命令或配置项；不确定时回到 docs 定位
+- 如果问题明显是运维执行类，而不是文档问答类，应考虑分流到 `openclaw-ops`
+- 文档不足时才联网补充，不要把联网搜索当默认第一步
 
 ## 使用方式
 

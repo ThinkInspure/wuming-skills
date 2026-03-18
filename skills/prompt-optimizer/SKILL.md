@@ -1,11 +1,26 @@
 ---
 name: prompt-optimizer
-description: Prompt 优化助手。适用于用户想优化提示词、改进 AI 指令、为特定任务设计更好的 prompt，或需要选择合适提示框架时使用。会根据任务场景匹配合适框架，并输出更清晰、更可执行的提示词版本。
+description: Prompt 优化助手。适用于用户想优化提示词、改进 AI 指令、为特定任务设计更好的 prompt，或需要选择合适提示框架时使用。会根据任务场景匹配合适框架，必要时先追问关键信息，再输出更清晰、更可执行的提示词版本。
 ---
 
 # Prompt Optimizer
 
-A comprehensive prompt engineering skill that helps users craft high-quality, effective prompts using proven frameworks.
+帮助用户基于具体任务场景，选择合适的提示词框架，并生成更清晰、更可执行的 prompt。
+
+## 设计模式
+
+本 skill 主要采用：
+- **Reviewer**：先判断用户现有 prompt 或任务描述的问题
+- **Inversion**：信息不足时，先追问目标、受众、约束和格式
+- **Generator**：基于选定框架生成优化后的 prompt
+
+## Gotchas
+
+- 不要一上来就套框架，先判断任务是否真的需要复杂框架
+- 不要为了显得专业而过度设计简单 prompt
+- 如果用户只想快速润色一句 prompt，不要强行输出一整套长模板
+- 如果目标、受众、输出格式不清楚，先补最小必要问题
+- 说明为什么选这个框架，比堆很多框架名更重要
 
 ## Workflow
 
