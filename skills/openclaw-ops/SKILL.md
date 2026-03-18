@@ -1,15 +1,45 @@
 ---
 name: openclaw-ops
-description: OpenClaw 运维助手，提供命令参考和故障排查修复流程。当用户需要执行 OpenClaw 命令、诊断服务问题、修复 Gateway 或渠道连接故障、查看日志、管理渠道或 Agent 时使用此技能。触发词包括：openclaw、小龙虾、gateway、渠道连接、消息发送失败、服务不可达等。
+description: OpenClaw 运维助手。用于用户提到 OpenClaw、小龙虾、gateway、渠道连接、消息发送失败、服务不可达、日志排查、渠道或 Agent 管理时使用。优先执行状态检查与故障分流；涉及重启、修复、更新、配置变更等高影响操作时，先向用户说明再执行。
 ---
 
 # OpenClaw Ops
 
 OpenClaw 是一个多渠道 AI Agent 网关，支持 WhatsApp、Telegram、Discord 等消息平台。本技能提供运维所需的命令参考和故障排查能力。
 
+## 设计模式
+
+本 skill 主要采用：
+- **Tool Wrapper**：提供 OpenClaw 命令、诊断路径和参考资料
+- **Runbook / Pipeline**：按“状态检查 → 问题分流 → 选择修复动作 → 验证结果”的顺序执行
+- **Reviewer（轻度）**：先判断问题类型，再决定是否需要修复
+
+## Gotchas
+
+- 不要一上来就重启或自动修复，先看状态和问题类型
+- 涉及重启、更新、repair、配置修改等高影响操作时，要先向用户说明再执行
+- 不要编造 OpenClaw CLI 子命令；不确定时先查文档或本地参考
+- 不要把渠道问题、模型问题、gateway 问题混成一个锅端命令
+- 修完后一定要回到健康检查，不要停在“已经执行了修复命令”
+
 ## 标准诊断流程
 
 当用户报告 OpenClaw 问题时，按以下步骤执行：
+
+### 0. 先判断是否需要确认
+
+以下操作默认可以直接做：
+- `openclaw status`
+- `openclaw channels status --probe`
+- `openclaw logs --limit 200`
+- `openclaw health`
+
+以下操作属于高影响动作，执行前应先向用户说明：
+- `openclaw doctor --repair`
+- `openclaw doctor --repair --force`
+- `openclaw gateway restart`
+- `openclaw update`
+- 任何明确会修改配置、重连渠道、重置状态的命令
 
 ```bash
 # 1. 快速状态检查

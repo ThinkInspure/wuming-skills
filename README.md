@@ -1,105 +1,182 @@
-## Skills
+# Skills
 
-This project provides WuMing's original AI assistant skills for personal learning and research purposes.
+这是悟鸣公开维护的一组 Agent Skills，偏实战、偏工作流，主要服务于 AI 工具使用、文档解读、项目配置、运维排障与技能分发。
 
-## Directory Structure
+和“技能清单”相比，这个仓库更适合被理解成一张**能力地图**：每个 skill 不只是一个说明文件，而是围绕某一类任务组织起来的可复用能力单元。
 
-| Skill Name                                               | Description                                                                                                                                                                                                                                                                                    |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [prompt-optimizer](skills/prompt-optimizer/SKILL.md)     | Prompt engineering expert that helps users craft optimized prompts using many proven frameworks. Use when users want to optimize prompts, improve AI instructions, create better prompts for specific tasks, or need help selecting the best prompt framework for their use case.              |
-| [qoder-wiki](skills/qoder-wiki/SKILL.md)                 | Qoder official documentation knowledge base covering product overview, user guides, feature configuration, extensions, pricing, and troubleshooting. Use when users ask about Qoder topics such as installation, usage, features, pricing, shortcuts, MCP, Skills, Quest Mode, Repo Wiki, etc. |
-| [openclaw-wiki](skills/openclaw-wiki/SKILL.md)           | OpenClaw official documentation knowledge base for the multi-channel AI Agent gateway. Use when users ask about OpenClaw topics such as installation, Gateway, WhatsApp/Telegram/Discord channel connections, Sessions, Tools, troubleshooting, etc.                                           |
-| [sync-skills](skills/sync-skills/SKILL.md)              | Automatically sync skills from multiple sources (Local, GitHub, skillsmp.com) to all installed AI coding tool directories. **MUST include `~/.agents/skills` as mandatory target** for universal compatibility across AI coding tools. Supports Claude Code, GitHub Copilot, Cursor, Windsurf, and more.                                                                                                                               |
-| [openclaw-ops](skills/openclaw-ops/SKILL.md)             | OpenClaw operations assistant providing CLI command reference and troubleshooting workflows. Use when users need to run OpenClaw commands, diagnose service issues, fix Gateway or channel connection failures, view logs, or manage channels and agents.                                      |
-| [claudian-installer](skills/claudian-installer/SKILL.md) | Install Claudian Obsidian plugin which embeds Claude Code as an AI collaborator in your vault. Use when the user wants to install Claudian plugin to their Obsidian vault.                                                                                                                     |
-| [claude-config-advisor](skills/claude-config-advisor/SKILL.md) | Review or design Claude Code project configuration. Use when the user asks about `.claude`, `CLAUDE.md`, Claude configuration files, structural quality, or needs guidance on which files to create. |
-| [copaw-ops](skills/copaw-ops/SKILL.md)                   | CoPaw 运维助手，提供服务启停、配置管理、模型与渠道管理、定时任务巡检、日志排查和故障恢复流程。当用户提到 copaw 运维、服务无响应、渠道断连、MCP 失败、模型调用失败、cron 不执行、Docker 部署或重置恢复时使用此技能。                                                                                                                                                                       |
-| [skill-optimizer](skills/skill-optimizer/SKILL.md)       | 优化和重构现有 skill。用于检查目标 skill 的触发描述、SKILL.md 工作流、确认门槛、渐进式披露，以及 references/scripts/assets 的组织方式。当用户提到”优化 skill””检查 skill 质量””改进某个 skill””重构技能说明”时使用。                                                                                                  |
-| [github-code-interpreter](skills/github-code-interpreter/SKILL.md) | GitHub 源码解读助手。当用户提供 GitHub 仓库链接并希望解读源码、理解原理、生成学习报告或快速上手项目时使用。会在 working 目录下创建解读文件夹，生成源码解读报告和快速上手文档两份文档，报告包含 Mermaid 架构图，并安排 1 小时后的复查完善。 **注意：此技能默认使用 `~/Documents/coding/github` 和 `~/Documents/working` 目录，建议根据个人习惯调整。** |
-| [paper-interpreter](skills/paper-interpreter/SKILL.md)   | 论文解读助手。当用户发送 arXiv 论文链接并希望下载论文、解读论文、生成读书笔记或详细报告时使用。会在指定目录创建论文文件夹，下载 PDF 和 TeX Source，生成中文 Markdown 解读报告（含 Mermaid 图），并安排 1 小时后和 2 小时后的自动复查任务。 **注意：此技能默认使用 `~/Documents/working/papers` 目录，建议根据个人习惯调整。** |
+---
 
-## Usage
+## Skill 地图
 
-**⚠️ Important Note About Default Directories**
+### 1. 文档 / 知识库类（Tool Wrapper）
 
-Some skills in this collection use default directory paths for storing files and working data. **Before using these skills, you should customize them to match your preferred directory structure:**
+这类 skill 的核心价值，是把某个产品、系统或知识域的资料包装成可按需触发的上下文。
 
-- **github-code-interpreter**: Default paths are `~/Documents/coding/github` (for repositories) and `~/Documents/working` (for analysis reports)
-- **paper-interpreter**: Default path is `~/Documents/working/papers` (for papers and reports)
+| Skill | 模式 | 适用场景 |
+|---|---|---|
+| [qoder-wiki](skills/qoder-wiki/SKILL.md) | Tool Wrapper | 用户询问 Qoder 的安装、使用、功能、定价、MCP、快捷键、Quest Mode、Repo Wiki 等 |
+| [openclaw-wiki](skills/openclaw-wiki/SKILL.md) | Tool Wrapper | 用户询问 OpenClaw 的安装、Gateway、渠道连接、Sessions、Tools、Skills、故障排查等 |
 
-To customize these paths, edit the respective `SKILL.md` files and update the directory references in the workflow sections. This ensures the skills work with your existing file organization.
+---
+
+### 2. 配置审查 / 结构优化类（Reviewer / Inversion）
+
+这类 skill 的重点不是“直接干活”，而是**先判断、先诊断、再给方案**。
+
+| Skill | 模式 | 适用场景 |
+|---|---|---|
+| [prompt-optimizer](skills/prompt-optimizer/SKILL.md) | Reviewer / Generator | 优化 Prompt、改进 AI 指令、为特定任务挑选提示词框架 |
+| [claude-config-advisor](skills/claude-config-advisor/SKILL.md) | Reviewer / Inversion | 审查或设计 `.claude`、`CLAUDE.md`、Claude Code 项目配置 |
+| [skill-optimizer](skills/skill-optimizer/SKILL.md) | Reviewer | 审查并优化已有 skill 的 description、工作流、确认门槛、目录结构 |
+
+---
+
+### 3. 解读 / 报告生成类（Pipeline / Generator）
+
+这类 skill 的核心是：**把原始资料落到本地，再生成结构化文档交付**。
+
+| Skill | 模式 | 适用场景 |
+|---|---|---|
+| [github-code-interpreter](skills/github-code-interpreter/SKILL.md) | Pipeline / Generator | 用户提供 GitHub 仓库链接，希望解读源码、分析架构、生成学习报告或快速上手文档 |
+| [paper-interpreter](skills/paper-interpreter/SKILL.md) | Pipeline / Generator | 用户提供 arXiv 链接，希望下载论文、解读论文、生成读书笔记或详细报告 |
+
+**这类 skill 的共同特点：**
+- 默认以本地文件为主交付
+- 默认先交付初稿
+- **不自动复查，是否复查需要用户明确同意**
+
+---
+
+### 4. 运维 / 排障类（Runbook / Tool Wrapper）
+
+这类 skill 适合处理“系统坏了、服务挂了、渠道断了、命令不会用”的场景。
+
+| Skill | 模式 | 适用场景 |
+|---|---|---|
+| [openclaw-ops](skills/openclaw-ops/SKILL.md) | Tool Wrapper / Runbook | OpenClaw 状态检查、日志排查、Gateway/渠道/Agent 故障处理 |
+| [copaw-ops](skills/copaw-ops/SKILL.md) | Tool Wrapper / Runbook | CoPaw 服务状态检查、配置排障、模型问题、cron 异常、渠道故障 |
+
+**这类 skill 的共同原则：**
+- 先做状态检查，再决定是否修复
+- 高影响动作（重启、repair、更新、配置修改）应先说明再执行
+
+---
+
+### 5. 安装 / 同步 / 分发类（Pipeline）
+
+这类 skill 偏工具链管理，负责把能力装上去、同步出去。
+
+| Skill | 模式 | 适用场景 |
+|---|---|---|
+| [sync-skills](skills/sync-skills/SKILL.md) | Pipeline | 将 skills 从本地、GitHub 或 skillsmp.com 同步到多个 AI 工具目录 |
+| [claudian-installer](skills/claudian-installer/SKILL.md) | Pipeline | 安装 Claudian Obsidian 插件，把 Claude Code 接进 Obsidian |
+
+---
+
+## 使用建议
+
+### 什么时候优先选哪类 skill？
+
+- **问产品文档 / 官方资料** → 先看 wiki 类 skill
+- **想优化 Prompt / 配置 / skill 本身** → 先看审查优化类 skill
+- **想把论文 / 仓库整理成报告** → 用解读生成类 skill
+- **服务出问题、命令不会用、要排障** → 用运维类 skill
+- **要把能力装到工具里、同步到多个目录** → 用安装同步类 skill
+
+---
+
+## 仓库设计原则
+
+这批公有 skill 默认遵循这些原则：
+
+1. **description 是给模型看的触发规则，不只是简介**
+2. **SKILL.md 负责调度，细节尽量拆到 references / scripts / assets**
+3. **默认先交付初稿，不自动做超出用户预期的后续动作**
+4. **需要高影响操作时，先说明再执行**
+5. **能脚本化的重复动作，尽量不要只写成文字说明**
+6. **持续沉淀 Gotchas，降低误触发和翻车概率**
+
+---
+
+## 安装
 
 ### Method 1: Install directly in Claude Code
 
 1. Add plugin marketplace
-```
+```bash
 /plugin marketplace add chujianyun/skills
 ```
 
 2. Install skills
+
 Install `prompt-optimizer`
-```
+```bash
 /plugin install prompt-engineering-skills@chujianyun/skills
 ```
 
 Install `qoder-wiki`
-```
+```bash
 /plugin install qoder-wiki@chujianyun/skills
 ```
 
 Install `openclaw-wiki`
-```
+```bash
 /plugin install openclaw-wiki@chujianyun/skills
 ```
 
 Install `sync-skills`
-```
+```bash
 /plugin install sync-skills@chujianyun/skills
 ```
 
 Install `claudian-installer`
-```
+```bash
 /plugin install claudian-installer@chujianyun/skills
 ```
 
 Install `openclaw-ops`
-```
+```bash
 /plugin install openclaw-ops@chujianyun/skills
 ```
 
 Install `copaw-ops`
-```
+```bash
 /plugin install copaw-ops@chujianyun/skills
 ```
 
 Install `skill-optimizer`
-```
+```bash
 /plugin install skill-optimizer@chujianyun/skills
 ```
 
 Install `claude-config-advisor`
-```
+```bash
 /plugin install claude-config-advisor@chujianyun/skills
 ```
 
 Install `github-code-interpreter`
-```
+```bash
 /plugin install github-code-interpreter@chujianyun/skills
 ```
 
 Install `paper-interpreter`
-```
+```bash
 /plugin install paper-interpreter@chujianyun/skills
 ```
+
 ### Method 2: Using [openskills](https://github.com/numman-ali/openskills)
 
-```
+```bash
 openskills install chujianyun/skills --global
 ```
+
+---
 
 ## Contact
 
 ![](https://mingmingruyue-hz.oss-cn-hangzhou.aliyuncs.com/2025/20260121123942301.png)
+
+---
 
 ## License
 
