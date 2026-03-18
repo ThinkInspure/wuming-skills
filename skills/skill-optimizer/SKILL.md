@@ -1,11 +1,26 @@
 ---
 name: skill-optimizer
-description: 优化和重构现有 skill。用于检查目标 skill 的触发描述、SKILL.md 工作流、确认门槛、渐进式披露，以及 references/scripts/assets 的组织方式。当用户提到“优化 skill”“检查 skill 质量”“改进某个 skill”“重构技能说明”，或直接说明要优化哪些方面时使用；先输出审查结论和优化计划，等待用户确认后再修改目标 skill。
+description: 优化和重构现有 skill。用于检查目标 skill 的触发描述、SKILL.md 工作流、确认门槛、渐进式披露，以及 references/scripts/assets 的组织方式。当用户提到“优化 skill”“检查 skill 质量”“改进某个 skill”“重构技能说明”，或直接说明要优化哪些方面时使用。默认先审查、再出计划、等待用户确认后再修改目标 skill。
 ---
 
 # Skill Optimizer
 
 先审查，再规划，最后在确认后修改。
+
+## 设计模式
+
+本 skill 主要采用：
+- **Reviewer**：先判断目标 skill 的问题，再给诊断
+- **Inversion**：先出计划并等待确认，不直接改文件
+- **Generator（轻度）**：在用户确认后，输出更清晰的 skill 结构或工作流
+
+## Gotchas
+
+- 不要把“审查结论”和“直接开始改文件”混成一步
+- 不要为了显得全面就偷偷扩大改动面
+- 不要在没确认前修改目标 skill
+- 不要为了“审查完整”而把无关 reference 全部读进上下文
+- 如果用户明确只要某个方向优化，先围绕这个方向，不要擅自重构整个 skill
 
 ## 工作流
 

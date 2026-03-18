@@ -1,11 +1,26 @@
 ---
 name: claude-config-advisor
-description: 审查或设计 Claude Code 项目配置。用于用户提到 `.claude`、`CLAUDE.md`、Claude 配置文件、项目级 Claude 自定义配置、配置结构是否合理、该创建哪些配置文件，或希望从零规划 Claude 配置时使用。
+description: 审查或设计 Claude Code 项目配置。用于用户提到 `.claude`、`CLAUDE.md`、Claude 配置文件、项目级 Claude 自定义配置、配置结构是否合理、该创建哪些配置文件，或希望从零规划 Claude 配置时使用。默认先审查或诊断，再给方案；只有用户明确要求时，才进一步输出推荐结构或样例文件。
 ---
 
 # Claude Config Advisor
 
 帮助用户评估现有 Claude Code 项目配置，或从零设计一套合适的 `.claude` 与 `CLAUDE.md` 结构。
+
+## 设计模式
+
+本 skill 主要采用：
+- **Reviewer**：先判断现有配置是否合理，再给评价
+- **Inversion**：信息不足时先追问最小必要问题，不一上来就堆完整方案
+- **Generator（轻度）**：只有在用户明确需要落地建议时，才生成推荐目录树或样例
+
+## Gotchas
+
+- 不要一上来就默认用户需要全套 `.claude/agents + hooks + commands + skills`
+- 不要把“审查现状”和“直接帮他重构一整套配置”混成一步
+- 不要为了显得专业就过度设计；简单项目往往只需要 `CLAUDE.md`
+- 不要在没读关键文件前就断言结构合理或不合理
+- 如果信息不足，先问一个最短问题，不要一次扔很多开放问题
 
 ## 工作模式
 
