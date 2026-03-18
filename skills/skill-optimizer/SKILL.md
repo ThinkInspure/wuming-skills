@@ -48,6 +48,7 @@ description: 优化和重构现有 skill。用于检查目标 skill 的触发描
 先读目标 skill 的 `SKILL.md`，再按需读取它直接链接的 `references/`、`scripts/`、`assets/`。
 
 - 默认使用 [references/review-checklist.md](references/review-checklist.md) 做审查基线。
+- 默认再结合 [references/skill-design-review-framework.md](references/skill-design-review-framework.md) 判断模式是否匹配、设计是否合理。
 - 需要判断最佳实践取舍时，再读取 [references/技能创作最佳实践 - Claude API Docs.md](<references/技能创作最佳实践 - Claude API Docs.md>)。
 - 不要为了“审查完整”而把无关 reference 全部读入上下文。
 
@@ -56,10 +57,15 @@ description: 优化和重构现有 skill。用于检查目标 skill 的触发描
 - `name` 是否为小写连字符格式，且与目录一致
 - `description` 是否同时说明“做什么”和“何时用”，是否便于触发
 - SKILL.md 是否把触发信息过多堆在正文里，而不是 description
+- 当前 skill 属于哪种主模式（Tool Wrapper / Generator / Reviewer / Inversion / Pipeline），次模式是什么，模式是否匹配任务本身
 - 工作流是否清晰、可执行，是否存在必须确认却没卡住的步骤
-- 内容是否过胖、重复，是否适合拆到 `references/`
+- 是否缺少 Gotchas、checklist、模板、脚本、配置或记忆机制
+- 内容是否过胖、重复，是否适合拆到 `references/` / `scripts/` / `assets/`
 - 是否缺少应脚本化的重复操作，或缺少必要参考资料
 - 输出格式是否明确，是否方便另一个 agent 稳定执行
+- 是否存在过度设计、railroading、默认行为过强或不适合公开分发的问题
+
+如果用户只要求微调某一部分（例如只改 description、只补 references、只修确认门槛），优先做局部审查，不要擅自把任务升级成整 skill 重构。
 
 ### Step 3: Plan（输出优化计划并等待确认）
 
@@ -69,6 +75,11 @@ description: 优化和重构现有 skill。用于检查目标 skill 的触发描
 
 ```markdown
 # Skill 审查结论
+
+## 模式判断
+- 主模式：...
+- 次模式：...
+- 当前判断：模式匹配 / 模式错位 / 模式不清
 
 ## 高优先级
 - [问题] 影响触发、正确性或执行稳定性
