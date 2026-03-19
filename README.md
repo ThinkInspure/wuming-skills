@@ -31,7 +31,17 @@
 
 ---
 
-### 3. 解读 / 报告生成类（Pipeline / Generator）
+### 3. 图示 / 可视化类（Generator）
+
+这类 skill 的核心是：**把抽象结构、流程和关系，稳定转成可直接渲染的图**。
+
+| Skill | 模式 | 适用场景 |
+|---|---|---|
+| [mermaid](skills/mermaid/SKILL.md) | Generator / Reviewer | 用户要求绘制 Mermaid 流程图、架构图、时序图、状态图、甘特图、ER 图、类图、旅程图等 |
+
+---
+
+### 4. 解读 / 报告生成类（Pipeline / Generator）
 
 这类 skill 的核心是：**把原始资料落到本地，再生成结构化文档交付**。
 
@@ -48,7 +58,7 @@
 
 ---
 
-### 4. 运维 / 排障类（Runbook / Tool Wrapper）
+### 5. 运维 / 排障类（Runbook / Tool Wrapper）
 
 这类 skill 适合处理“系统坏了、服务挂了、渠道断了、命令不会用”的场景。
 
@@ -63,7 +73,7 @@
 
 ---
 
-### 5. 安装 / 同步 / 分发类（Pipeline）
+### 6. 安装 / 同步 / 分发类（Pipeline）
 
 这类 skill 偏工具链管理，负责把能力装上去、同步出去。
 
@@ -80,6 +90,7 @@
 
 - **问产品文档 / 官方资料** → 先看 wiki 类 skill
 - **想优化 Prompt / 配置 / skill 本身** → 先看审查优化类 skill
+- **想把流程、结构、时序整理成图** → 用 Mermaid 图示类 skill
 - **想把论文 / 仓库整理成报告** → 用解读生成类 skill
 - **服务出问题、命令不会用、要排障** → 用运维类 skill
 - **要把能力装到工具里、同步到多个目录** → 用安装同步类 skill
@@ -170,6 +181,11 @@ Install `copaw-ops`
 Install `skill-optimizer`
 ```bash
 /plugin install skill-optimizer@chujianyun/skills
+```
+
+Install `mermaid`
+```bash
+/plugin install mermaid@chujianyun/skills
 ```
 
 Install `claude-config-advisor`
