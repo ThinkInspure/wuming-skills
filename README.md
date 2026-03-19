@@ -65,6 +65,7 @@
 | Skill | 模式 | 适用场景 |
 |---|---|---|
 | [openclaw-ops](skills/openclaw-ops/SKILL.md) | Tool Wrapper / Runbook | OpenClaw 状态检查、日志排查、Gateway/渠道/Agent 故障处理 |
+| [openclaw-session-cleaner](skills/openclaw-session-cleaner/SKILL.md) | Tool Wrapper / Runbook | 清理 OpenClaw 膨胀的 session 文件、删除旧 cron session、重建 `sessions.json` 引用 |
 | [copaw-ops](skills/copaw-ops/SKILL.md) | Tool Wrapper / Runbook | CoPaw 服务状态检查、配置排障、模型问题、cron 异常、渠道故障 |
 
 **这类 skill 的共同原则：**
@@ -171,6 +172,11 @@ Install `claudian-installer`
 Install `openclaw-ops`
 ```bash
 /plugin install openclaw-ops@chujianyun/skills
+```
+
+Install `openclaw-session-cleaner`
+```bash
+/plugin install openclaw-session-cleaner@chujianyun/skills
 ```
 
 Install `copaw-ops`
