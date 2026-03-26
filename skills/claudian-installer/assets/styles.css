@@ -24,6 +24,7 @@
   height: 100%;
   padding: 0;
   overflow: hidden;
+  font-family: var(--font-text);
 }
 
 
@@ -1092,6 +1093,31 @@ body.theme-light .claudian-message-content pre {
   font-size: 12px;
 }
 
+/* ToolSearch expanded: icon + tool name rows */
+.claudian-tool-search-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+  font-family: var(--font-monospace);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.claudian-tool-search-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  color: var(--text-faint);
+}
+
+.claudian-tool-search-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
 /* Web search links */
 .claudian-tool-link {
   display: flex;
@@ -1181,7 +1207,7 @@ body.theme-light .claudian-message-content pre {
 /* ============================================
    components/status-panel.css
    ============================================ */
-/* Status Panel - persistent bottom panel for async subagents and todos */
+/* Status Panel - persistent bottom panel for todos and command output */
 
 .claudian-status-panel-container {
   flex-shrink: 0;
@@ -1190,53 +1216,6 @@ body.theme-light .claudian-message-content pre {
 
 .claudian-status-panel {
   padding-top: 12px;
-}
-
-/* Async Subagent Section */
-
-.claudian-status-panel-subagents {
-  margin-bottom: 4px;
-}
-
-.claudian-status-panel-done-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 2px 0;
-}
-
-.claudian-status-panel-combined-row {
-  justify-content: flex-start;
-}
-
-.claudian-status-panel-combined-row .claudian-status-panel-done-text {
-  flex: 1;
-}
-
-.claudian-status-panel-icon.claudian-status-panel-done-icon {
-  color: var(--color-green);
-}
-
-.claudian-status-panel-icon.claudian-status-panel-bot-icon {
-  color: var(--interactive-accent);
-}
-
-.claudian-status-panel-done-text {
-  font-family: var(--font-monospace);
-  font-size: 13px;
-  color: var(--text-normal);
-}
-
-.claudian-status-panel-running-row {
-  display: flex;
-  justify-content: flex-end;
-  padding: 2px 0;
-}
-
-.claudian-status-panel-running-text {
-  font-family: var(--font-monospace);
-  font-size: 13px;
-  color: var(--color-cyan);
 }
 
 /* Todo Section */
@@ -1718,7 +1697,7 @@ body.theme-light .claudian-message-content pre {
 .claudian-context-row {
   display: none;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-shrink: 0;
   padding: 6px 10px 0 10px;
   gap: 8px;
@@ -1747,6 +1726,7 @@ body.theme-light .claudian-message-content pre {
 /* Match file chip height (24px): chip has 16px remove button + 6px padding + 2px border */
 /* Indicator: 12px text + 10px padding (5+5) + 2px border = 24px */
 .claudian-selection-indicator,
+.claudian-browser-selection-indicator,
 .claudian-canvas-indicator {
   color: #7abaff;
   font-size: 12px;
@@ -1759,6 +1739,10 @@ body.theme-light .claudian-message-content pre {
   border-radius: 4px;
   margin-inline-start: auto;
   flex-shrink: 0;
+  order: 4;
+  max-width: min(100%, clamp(220px, 64vw, 560px));
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .claudian-input {
@@ -2063,12 +2047,19 @@ body.theme-light .claudian-message-content pre {
 /* ============================================
    toolbar/thinking-selector.css
    ============================================ */
-/* Thinking budget selector */
+/* Thinking selector (effort for adaptive models, token budget for custom) */
 .claudian-thinking-selector {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-left: 12px;
+}
+
+/* Effort / budget container (shared layout) */
+.claudian-thinking-effort,
+.claudian-thinking-budget {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .claudian-thinking-label-text {
@@ -3079,6 +3070,11 @@ code .claudian-file-link:hover {
   border-radius: 2px;
   padding: 3px 0;
   margin: -3px 0;
+}
+
+/* Preview mode selection highlight via CSS Custom Highlight API */
+::highlight(claudian-selection) {
+  background: var(--text-selection);
 }
 
 /* CM6 widget container - ensure transparent background */
