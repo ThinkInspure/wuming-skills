@@ -74,13 +74,12 @@
 
 ---
 
-### 6. 安装 / 同步 / 分发类（Pipeline）
+### 6. 安装类（Pipeline）
 
-这类 skill 偏工具链管理，负责把能力装上去、同步出去。
+这类 skill 偏工具链管理，负责把能力装上去。
 
 | Skill | 模式 | 适用场景 |
 |---|---|---|
-| [sync-skills](skills/sync-skills/SKILL.md) | Pipeline | 将 skills 从本地、GitHub 或 skillsmp.com 同步到多个 AI 工具目录 |
 | [claudian-installer](skills/claudian-installer/SKILL.md) | Pipeline | 安装 Claudian Obsidian 插件，把 Claude Code 接进 Obsidian |
 
 ---
@@ -157,11 +156,6 @@ Install `qoder-wiki`
 Install `openclaw-wiki`
 ```bash
 /plugin install openclaw-wiki@chujianyun/skills
-```
-
-Install `sync-skills`
-```bash
-/plugin install sync-skills@chujianyun/skills
 ```
 
 Install `claudian-installer`

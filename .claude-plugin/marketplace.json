@@ -18,13 +18,6 @@
       "skills": ["./skills/prompt-optimizer"]
     },
     {
-      "name": "sync-skills",
-      "description": "Automatically sync skills from multiple sources (Local, GitHub, skillsmp.com) to all installed AI coding tool directories. Supports Claude Code, GitHub Copilot, Cursor, Windsurf, and more.",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/sync-skills"]
-    },
-    {
       "name": "qoder-wiki",
       "description": "Qoder 官方文档知识库，包含产品介绍、用户指南、功能配置、扩展能力、账户定价和故障排查",
       "source": "./",
