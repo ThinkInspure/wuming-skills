@@ -15,7 +15,6 @@
 | Skill | 模式 | 适用场景 |
 |---|---|---|
 | [qoder-wiki](skills/qoder-wiki/SKILL.md) | Tool Wrapper | 用户询问 Qoder 的安装、使用、功能、定价、MCP、快捷键、Quest Mode、Repo Wiki 等 |
-| [openclaw-wiki](skills/openclaw-wiki/SKILL.md) | Tool Wrapper | 用户询问 OpenClaw 的安装、Gateway、渠道连接、Sessions、Tools、Skills、故障排查等 |
 
 ---
 
@@ -152,11 +151,6 @@ Install `prompt-optimizer`
 Install `qoder-wiki`
 ```bash
 /plugin install qoder-wiki@chujianyun/skills
-```
-
-Install `openclaw-wiki`
-```bash
-/plugin install openclaw-wiki@chujianyun/skills
 ```
 
 Install `claudian-installer`
