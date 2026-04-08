@@ -28,6 +28,7 @@
 | [prompt-optimizer](skills/prompt-optimizer/SKILL.md) | Reviewer / Generator | 优化 Prompt、改进 AI 指令、为特定任务挑选提示词框架 |
 | [claude-config-advisor](skills/claude-config-advisor/SKILL.md) | Reviewer / Inversion | 审查或设计 `.claude`、`CLAUDE.md`、Claude Code 项目配置 |
 | [skill-optimizer](skills/skill-optimizer/SKILL.md) | Reviewer | 审查并优化已有 skill 的 description、工作流、确认门槛、目录结构 |
+| [agent-optimizer](skills/agent-optimizer/SKILL.md) | Reviewer / Consultant | 基于 12-Factor AgentOps 框架，提供 Agent 设计咨询、审查现有 Agent/Skill/工作流设计，发现问题并给出改进建议 |
 
 ---
 
@@ -206,6 +207,11 @@ Install `paper-interpreter`
 Install `opendataloader-pdf`
 ```bash
 /plugin install opendataloader-pdf@chujianyun/skills
+```
+
+Install `agent-optimizer`
+```bash
+/plugin install agent-optimizer@chujianyun/skills
 ```
 
 ### Method 2: Using [openskills](https://github.com/numman-ali/openskills)
