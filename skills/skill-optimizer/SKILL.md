@@ -1,6 +1,6 @@
 ---
 name: skill-optimizer
-description: 优化和重构现有 skill。用于检查目标 skill 的触发描述、SKILL.md 工作流、确认门槛、渐进式披露，以及 references/scripts/assets 的组织方式。当用户提到“优化 skill”“检查 skill 质量”“改进某个 skill”“重构技能说明”，或直接说明要优化哪些方面时使用。默认先审查、再出计划、等待用户确认后再修改目标 skill。
+description: 审查并优化现有 skill 的触发语义、工作流、确认门槛和资源组织。当用户提到“优化 skill”“检查 skill 质量”“改进某个 skill”“重构技能说明”，或明确说明要优化哪些方面时使用。默认先审查并给计划，只有在用户明确确认开始修改后才实施。
 ---
 
 # Skill Optimizer
@@ -49,21 +49,16 @@ description: 优化和重构现有 skill。用于检查目标 skill 的触发描
 
 - 默认使用 [references/review-checklist.md](references/review-checklist.md) 做审查基线。
 - 默认再结合 [references/skill-design-review-framework.md](references/skill-design-review-framework.md) 判断模式是否匹配、设计是否合理。
-- 需要判断最佳实践取舍时，再读取 [references/技能创作最佳实践 - Claude API Docs.md](<references/技能创作最佳实践 - Claude API Docs.md>)。
+- 需要判断最佳实践取舍时，再读取 [references/skill-creation-best-practices-claude-api-docs.md](references/skill-creation-best-practices-claude-api-docs.md)。
 - 不要为了“审查完整”而把无关 reference 全部读入上下文。
 
 重点检查：
 
-- `name` 是否为小写连字符格式，且与目录一致
-- `description` 是否同时说明“做什么”和“何时用”，是否便于触发
-- SKILL.md 是否把触发信息过多堆在正文里，而不是 description
-- 当前 skill 属于哪种主模式（Tool Wrapper / Generator / Reviewer / Inversion / Pipeline），次模式是什么，模式是否匹配任务本身
-- 工作流是否清晰、可执行，是否存在必须确认却没卡住的步骤
-- 是否缺少 Gotchas、checklist、模板、脚本、配置或记忆机制
-- 内容是否过胖、重复，是否适合拆到 `references/` / `scripts/` / `assets/`
-- 是否缺少应脚本化的重复操作，或缺少必要参考资料
-- 输出格式是否明确，是否方便另一个 agent 稳定执行
-- 是否存在过度设计、railroading、默认行为过强或不适合公开分发的问题
+- 触发语义是否清楚：`name`、目录名、`description` 是否一致，且便于触发
+- 工作流是否可靠：步骤是否清晰，是否存在必须确认却没卡住的环节
+- 输出契约是否明确：审查结论、优化计划、最终修改结果是否分开
+- 结构是否合适：正文是否过胖，是否应拆到 `references/` / `scripts/` / `assets/`
+- 设计是否合理：模式是否匹配，是否存在过度设计、脚本缺失或资源组织问题
 
 如果用户只要求微调某一部分（例如只改 description、只补 references、只修确认门槛），优先做局部审查，不要擅自把任务升级成整 skill 重构。
 
@@ -75,6 +70,10 @@ description: 优化和重构现有 skill。用于检查目标 skill 的触发描
 
 ```markdown
 # Skill 审查结论
+
+## 审查对象
+- 目标 skill：...
+- 本次范围：...
 
 ## 模式判断
 - 主模式：...
@@ -90,13 +89,19 @@ description: 优化和重构现有 skill。用于检查目标 skill 的触发描
 ## 低优先级
 - [问题] 体验提升项，可选
 
+## 不改动项
+- ...
+
+## 额外建议
+- ...
+
 # 优化计划
 1. 修改 [目标文件路径]
    - 变更内容：
    - 原因：
    - 是否受用户指定方向驱动：是/否
 
-请确认是否按以上计划执行。
+仅当用户明确回复“按计划执行”“开始修改”“确认修改”等开始执行类确认语时，才能进入实施阶段。
 ```
 
 规则：
@@ -104,6 +109,7 @@ description: 优化和重构现有 skill。用于检查目标 skill 的触发描
 - 如果用户明确给了优化方向，先围绕这些方向出计划，再补充少量高价值附加建议。
 - 如果发现超出本次范围的大问题，单独列为“额外建议”，不要偷偷扩大改动面。
 - 未获得确认前，不要修改目标 skill。
+- “我看看”“有道理”“先这样”不算确认；只有明确开始执行类确认语才算进入 Step 4。
 
 ### Step 4: Implement（确认后实施）
 
@@ -113,6 +119,7 @@ description: 优化和重构现有 skill。用于检查目标 skill 的触发描
 - 尽量小步重构；仅在确有收益时拆分新的 `references/`、`scripts/`、`assets/`。
 - 如果新增引用文件，确保它们都直接从目标 `SKILL.md` 链接，避免深层跳转。
 - 保留用户原有有效内容；只删除重复、失效或与新流程冲突的部分。
+- 如果用户确认语义含糊，继续停留在 Step 3，不要自行解释成“已确认”。
 
 ### Step 5: Verify（校验结果）
 
@@ -124,6 +131,7 @@ description: 优化和重构现有 skill。用于检查目标 skill 的触发描
 - `SKILL.md` 主体比改动前更短、更清晰，且工作流可执行
 - 新增 `references/` 是否只承载细节，没有和 `SKILL.md` 重复大段内容
 - 如有“先审查后确认再修改”的门槛，是否在说明里写清楚
+- Step 3 模板是否明确写出范围、不改动项和可接受确认语
 
 最后向用户汇报：
 

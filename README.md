@@ -26,7 +26,7 @@
 |---|---|---|
 | [prompt-optimizer](skills/prompt-optimizer/SKILL.md) | Reviewer / Generator | 优化 Prompt、改进 AI 指令、为特定任务挑选提示词框架 |
 | [claude-config-advisor](skills/claude-config-advisor/SKILL.md) | Reviewer / Inversion | 审查或设计 `.claude`、`CLAUDE.md`、Claude Code 项目配置 |
-| [skill-optimizer](skills/skill-optimizer/SKILL.md) | Reviewer | 审查并优化已有 skill 的 description、工作流、确认门槛、目录结构 |
+| [skill-optimizer](skills/skill-optimizer/SKILL.md) | Reviewer / Inversion | 审查并优化已有 skill 的触发语义、工作流、确认门槛和资源组织 |
 | [agent-optimizer](skills/agent-optimizer/SKILL.md) | Reviewer / Consultant | 基于 12-Factor AgentOps 框架，提供 Agent 设计咨询、审查现有 Agent/Skill/工作流设计，发现问题并给出改进建议 |
 
 ---
@@ -83,7 +83,6 @@
 | Skill | 模式 | 适用场景 |
 |---|---|---|
 | [claudian-installer](skills/claudian-installer/SKILL.md) | Pipeline | 安装 Claudian Obsidian 插件，把 Claude Code 接进 Obsidian |
-| [sync-skills](skills/sync-skills/SKILL.md) | Pipeline | 将本地目录、GitHub 仓库或 skillsmp.com 的 skill 同步到 AI 编码工具目录 |
 
 ---
 
@@ -219,11 +218,6 @@ Install `hermes-ops`
 Install `hermes-qq`
 ```bash
 /plugin install hermes-qq@chujianyun/skills
-```
-
-Install `sync-skills`
-```bash
-/plugin install sync-skills@chujianyun/skills
 ```
 
 ### Method 2: Using [openskills](https://github.com/numman-ali/openskills)
