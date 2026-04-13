@@ -145,80 +145,9 @@
 
 2. Install skills
 
-Install `prompt-optimizer`
-```bash
-/plugin install prompt-engineering-skills@chujianyun/skills
-```
+安装所有，发送: "安装 https://github.com/chujianyun/skills" 所有 skills
 
-Install `qoder-wiki`
-```bash
-/plugin install qoder-wiki@chujianyun/skills
-```
-
-Install `claudian-installer`
-```bash
-/plugin install claudian-installer@chujianyun/skills
-```
-
-Install `openclaw-ops`
-```bash
-/plugin install openclaw-ops@chujianyun/skills
-```
-
-Install `openclaw-session-cleaner`
-```bash
-/plugin install openclaw-session-cleaner@chujianyun/skills
-```
-
-Install `copaw-ops`
-```bash
-/plugin install copaw-ops@chujianyun/skills
-```
-
-Install `skill-optimizer`
-```bash
-/plugin install skill-optimizer@chujianyun/skills
-```
-
-Install `mermaid`
-```bash
-/plugin install mermaid@chujianyun/skills
-```
-
-Install `claude-config-advisor`
-```bash
-/plugin install claude-config-advisor@chujianyun/skills
-```
-
-Install `github-code-interpreter`
-```bash
-/plugin install github-code-interpreter@chujianyun/skills
-```
-
-Install `paper-interpreter`
-```bash
-/plugin install paper-interpreter@chujianyun/skills
-```
-
-Install `opendataloader-pdf`
-```bash
-/plugin install opendataloader-pdf@chujianyun/skills
-```
-
-Install `agent-optimizer`
-```bash
-/plugin install agent-optimizer@chujianyun/skills
-```
-
-Install `hermes-ops`
-```bash
-/plugin install hermes-ops@chujianyun/skills
-```
-
-Install `hermes-qq`
-```bash
-/plugin install hermes-qq@chujianyun/skills
-```
+安装某个，发送: "安装 https://github.com/chujianyun/skills" 中的 xx skill
 
 ### Method 2: Using [openskills](https://github.com/numman-ali/openskills)
 
