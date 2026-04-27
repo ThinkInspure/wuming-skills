@@ -81,6 +81,13 @@
       "skills": ["./skills/claude-config-advisor"]
     },
     {
+      "name": "agent-md-advisor",
+      "description": "AGENTS.md / CLAUDE.md 最佳实践顾问。用于询问 AI coding agent 指令文件格式、结构和最佳实践，也用于审查、诊断、重写、优化或从零创建 AGENTS.md、CLAUDE.md、CLAUDE.local.md、.claude/rules 等 agent 指令文件。",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/agent-md-advisor"]
+    },
+    {
       "name": "github-code-interpreter",
       "description": "GitHub 源码解读助手。适用于用户提供 GitHub 仓库链接，并希望解读源码、理解原理、分析架构、生成学习报告或快速上手文档时使用。会生成源码解读报告和快速上手文档，适合学习项目设计与实现。",
       "source": "./",

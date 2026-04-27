@@ -25,6 +25,7 @@
 | Skill | 模式 | 适用场景 |
 |---|---|---|
 | [prompt-optimizer](skills/prompt-optimizer/SKILL.md) | Reviewer / Generator | 优化 Prompt、改进 AI 指令、为特定任务挑选提示词框架 |
+| [agent-md-advisor](skills/agent-md-advisor/SKILL.md) | Advisor / Reviewer / Generator | 回答 AGENTS.md / CLAUDE.md 最佳实践，诊断并优化 AI agent 指令文件 |
 | [claude-config-advisor](skills/claude-config-advisor/SKILL.md) | Reviewer / Inversion | 审查或设计 `.claude`、`CLAUDE.md`、Claude Code 项目配置 |
 | [skill-optimizer](skills/skill-optimizer/SKILL.md) | Reviewer / Inversion | 审查并优化已有 skill 的触发语义、工作流、确认门槛和资源组织 |
 | [agent-optimizer](skills/agent-optimizer/SKILL.md) | Reviewer / Consultant | 基于 12-Factor AgentOps 框架，提供 Agent 设计咨询、审查现有 Agent/Skill/工作流设计，发现问题并给出改进建议 |
