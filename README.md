@@ -42,7 +42,17 @@
 
 ---
 
-### 4. 解读 / 报告生成类（Pipeline / Generator）
+### 4. 写作 / 表达优化类（Pipeline / Generator）
+
+这类 skill 的核心是：**保留作者原意，把已有文本改成更自然、更可发布的表达**。
+
+| Skill | 模式 | 适用场景 |
+|---|---|---|
+| [remove-ai-flavor](skills/remove-ai-flavor/SKILL.md) | Pipeline / Generator / Reviewer | 识别并改写文章、公众号稿、自媒体稿、口播稿、演讲稿、课程稿、产品文案中的 AI 痕迹、模板腔、资料味和翻译腔 |
+
+---
+
+### 5. 解读 / 报告生成类（Pipeline / Generator）
 
 这类 skill 的核心是：**把原始资料落到本地，再生成结构化文档交付**。
 
@@ -59,7 +69,7 @@
 
 ---
 
-### 5. 运维 / 排障类（Runbook / Tool Wrapper）
+### 6. 运维 / 排障类（Runbook / Tool Wrapper）
 
 这类 skill 适合处理“系统坏了、服务挂了、渠道断了、命令不会用”的场景。
 
@@ -77,7 +87,7 @@
 
 ---
 
-### 6. 安装类（Pipeline）
+### 7. 安装类（Pipeline）
 
 这类 skill 偏工具链管理，负责把能力装上去。
 
@@ -94,6 +104,7 @@
 - **问产品文档 / 官方资料** → 先看 wiki 类 skill
 - **想优化 Prompt / 配置 / skill 本身** → 先看审查优化类 skill
 - **想把流程、结构、时序整理成图** → 用 `mermaid` skill
+- **想让已有文章更自然、更像终稿** → 用 `remove-ai-flavor` skill
 - **想把论文 / 仓库整理成报告** → 用解读生成类 skill
 - **服务出问题、命令不会用、要排障** → 用运维类 skill
 - **要把能力装到工具里、同步到多个目录** → 用安装同步类 skill
