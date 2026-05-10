@@ -128,6 +128,20 @@
       "source": "./",
       "strict": false,
       "skills": ["./skills/remove-ai-flavor"]
+    },
+    {
+      "name": "alltuu-downloader",
+      "description": "喔图(alltuu.com)云摄影相册批量下载工具。当用户需要从 alltuu.com / m.alltuu.com 相册批量下载原图时使用此技能。支持下载原图（6720x4480 级别），自动处理签名URL，并发下载。适用于 alltuu.com/album/ 相册链接。",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/alltuu-downloader"]
+    },
+    {
+      "name": "photoplus-downloader",
+      "description": "PhotoPlus相册批量下载原图工具。当用户需要从 photoplus.cn/live/ 相册批量下载原图时使用此技能。适用于 photoplus.cn 相册链接，支持多线程并发、自动跳过已下载文件。",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/photoplus-downloader"]
     }
   ]
 }
